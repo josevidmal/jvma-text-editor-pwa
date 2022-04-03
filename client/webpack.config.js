@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const WorkboxPlugin = require('workbox-webpack-plugin');
-const { InjectManifest } = require('workbox-webpack-plugin');
+const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin');
 const path = require('path');
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
@@ -21,9 +20,9 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'Webpack Plugin',
+        title: 'J.A.T.E',
       }),
-      new WorkboxPlugin.GenerateSW(),
+      new GenerateSW(),
       new InjectManifest({
         swSrc: './src/src-sw.js',
         swDest: 'service-worker.js',
@@ -31,11 +30,11 @@ module.exports = () => {
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
-        name: '',
-        short_name: '',
-        description: '',
-        background_color: '',
-        theme_color: '',
+        name: 'Just Another Text Editor',
+        short_name: 'J.A.T.E',
+        description: 'A text editor that works even offline',
+        background_color: '#19d3fc',
+        theme_color: '#19d3fc',
         start_url: '/',
         publicPath: '/',
         icons: [
