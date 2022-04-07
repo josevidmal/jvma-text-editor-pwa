@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 const path = require('path');
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
@@ -22,10 +22,9 @@ module.exports = () => {
         template: './index.html',
         title: 'J.A.T.E',
       }),
-      new GenerateSW(),
       new InjectManifest({
-        swSrc: './src/src-sw.js',
-        swDest: 'service-worker.js',
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
       }),
       new WebpackPwaManifest({
         fingerprints: false,
@@ -35,6 +34,7 @@ module.exports = () => {
         description: 'A text editor that works even offline',
         background_color: '#19d3fc',
         theme_color: '#19d3fc',
+        id: '/',
         start_url: '/',
         publicPath: '/',
         icons: [
@@ -54,7 +54,7 @@ module.exports = () => {
           use: ['style-loader', 'css-loader'],
         },
         {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
           type: 'asset/resource',
         },
         {
@@ -64,6 +64,7 @@ module.exports = () => {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
             },
           },
         },
