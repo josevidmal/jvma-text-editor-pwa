@@ -13,7 +13,9 @@ Then, I wrote some code in the install.js file to define the logic for the `befo
 
 Finally, I added some code to the src-sw.js file, where first I implemented the asset caching logic using the `StaleWhileRevalidate()` strategy for the `asset-cache`. After this, I also wrote the logic for the `image-cache` for image caching, again using `StaleWhileRevalidate()` strategy. 
 
-## Usage
+## Usage & [Deployed Application](https://jvma-text-editor-pwa.herokuapp.com/)
+
+This is the link to the deployed application in Heroku: https://jvma-text-editor-pwa.herokuapp.com/
 
 Here are some images of the application in use:
 
